@@ -1,4 +1,5 @@
 import pygame as pg
+from body import Body
 
 class App:
 
@@ -8,6 +9,10 @@ class App:
         pg.display.set_caption(title)
         self.clock = pg.time.Clock()
         self.running = True
+
+        self.bodies = []
+        self.bodies.append(Body(200, 200, mass=10, radius=10, velocity_x=1, velocity_y=1, color=(255, 0, 0)))
+
         self.mainLoop()
 
     def mainLoop(self):
@@ -20,15 +25,17 @@ class App:
     
     def handle_events(self):
         for event in pg.event.get():
-            if(event.type == pg.QUIT):
+            if (event.type == pg.QUIT):
                 self.running = False
     
     def update(self):
-        # update physics + game logic
-        pass
+        for body in self.bodies:
+            body.update()
 
     def render(self):
         self.screen.fill((0, 0, 0))
+        for body in self.bodies:
+            body.draw(self.screen)
         pg.display.flip()
 
     def quit(self):
