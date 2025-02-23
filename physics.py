@@ -1,15 +1,11 @@
 import math
 
 class PhysicsEngine:
-    @staticmethod
-    def calculate_acceleration(gravitational_constant, mass, distance):
-        if distance == 0:
-            return 0
-        return (gravitational_constant * mass) / (distance ** 2)
 
     @staticmethod
     def apply_forces(bodies):
         gravitational_constant = 1 # Can be adjusted accordingly
+        softening_distance = 5
         for body in bodies:
             total_acceleration_x = 0
             total_acceleration_y = 0
@@ -24,7 +20,7 @@ class PhysicsEngine:
                 if distance == 0:
                     continue
 
-                acceleration_magnitude = PhysicsEngine.calculate_acceleration(gravitational_constant, other_body.mass, distance)
+                acceleration_magnitude = (gravitational_constant * other_body.mass) / (distance ** 2 + softening_distance ** 2)
 
                 total_acceleration_x += acceleration_magnitude * (distance_x / distance)
                 total_acceleration_y += acceleration_magnitude * (distance_y / distance)

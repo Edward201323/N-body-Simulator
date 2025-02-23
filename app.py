@@ -12,8 +12,8 @@ class App:
         self.running = True
 
         self.bodies = []
-        self.bodies.append(Body(100, 200, 10, 10, 0, 0, 0, 0, (255, 255, 255)))
-        self.bodies.append(Body(200, 200, 10, 10, 0, 0, 0, 0, color = (255, 255, 255)))
+        self.bodies.append(Body(100, 200, 1, 1, 0, 0, 0, 0, (255, 255, 255)))
+        self.bodies.append(Body(200, 200, 1, 1, 0, 0, 0, 0, color = (255, 255, 255)))
 
         self.mainLoop()
 
