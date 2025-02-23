@@ -17,7 +17,3 @@ class Body:
 
     def draw(self, screen):
         pg.draw.circle(screen, self.color, (int(self.x), int(self.y)), self.radius) # draws the body onto the screen
-
-    def update(self):
-        self.x += self.velocity_x
-        self.y += self.velocity_y

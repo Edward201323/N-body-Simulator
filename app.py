@@ -1,5 +1,6 @@
 import pygame as pg
 from body import Body
+from physics import PhysicsEngine
 
 class App:
 
@@ -11,8 +12,8 @@ class App:
         self.running = True
 
         self.bodies = []
-        self.bodies.append(Body(300, 200, 10, 10, color = (255, 255, 255)))
-        self.bodies.append(Body(400, 200, 10, 10, color = (255, 255, 255)))
+        self.bodies.append(Body(100, 200, 10, 10, 0, 0, 0, 0, (255, 255, 255)))
+        self.bodies.append(Body(200, 200, 10, 10, 0, 0, 0, 0, color = (255, 255, 255)))
 
         self.mainLoop()
 
@@ -30,8 +31,11 @@ class App:
                 self.running = False
     
     def update(self): # updates the physics of the program
-        for body in self.bodies:
-            body.update()
+        PhysicsEngine.apply_forces(self.bodies)
+        PhysicsEngine.apply_velocities(self.bodies)
+        PhysicsEngine.apply_accelerations(self.bodies)
+
+            
 
     def render(self): # draw the updated physics
         self.screen.fill((0, 0, 0))

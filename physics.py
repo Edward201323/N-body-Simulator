@@ -8,7 +8,7 @@ class PhysicsEngine:
         return (gravitational_constant * mass) / (distance ** 2)
 
     @staticmethod
-    def apply_accelerations(bodies):
+    def apply_forces(bodies):
         gravitational_constant = 1 # Can be adjusted accordingly
         for body in bodies:
             total_acceleration_x = 0
@@ -31,6 +31,18 @@ class PhysicsEngine:
         
             body.acceleration_x = total_acceleration_x
             body.acceleration_y = total_acceleration_y
+
+    @staticmethod
+    def apply_velocities(bodies):
+        for body in bodies:
+            body.x += body.velocity_x
+            body.y += body.velocity_y
+
+    @staticmethod
+    def apply_accelerations(bodies):
+        for body in bodies:
+            body.velocity_x += body.acceleration_x
+            body.velocity_y += body.acceleration_y
 
                 
         
